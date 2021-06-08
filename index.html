@@ -14,7 +14,31 @@
         <nav>
             <input type="text" placeholder="Search film name" v-model="query">
             <button @click="searchFilm()">Search</button>
+
+            <select name="category" id="category" v-model="category" @click="clearList()">
+                <option value="" selected disabled >Choose Category</option>
+                <option value="movies">Movies</option>
+                <option value="tvShows">Tv Shows</option>
+            </select>
         </nav>
+
+        <div class="container">
+            <div class="card" v-for="(film, index) in filmsList" v-if="category === 'movies'">
+                {{ film.title }}
+                {{ film.original_title }}
+                <img :src="countryFlag + film.original_language + flagTipe" v-if="film.original_language == 'en' ? film.original_language = 'us' : film.original_language">
+                {{ film.vote_average }}
+
+            </div>
+
+            <div class="card" v-else>
+                {{ film.original_name }}
+                {{ film.original_name }}
+                <img :src="countryFlag + film.origin_country + flagTipe">
+                {{ film.origin_country }}
+                {{ film.vote_average }}
+            </div>
+        </div>
     </div>
 
     <!-- VUEJS -->
