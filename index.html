@@ -11,7 +11,10 @@
 </head>
 <body>
     <div id="app">
-        
+        <nav>
+            <input type="text" placeholder="Search film name" v-model="query">
+            <button @click="searchFilm()">Search</button>
+        </nav>
     </div>
 
     <!-- VUEJS -->
