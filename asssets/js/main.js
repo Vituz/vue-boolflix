@@ -40,6 +40,9 @@ const app = new Vue({
                     console.log(this.filmsList);
                 }).catch(e => {
                     console.error(e);
+                    if(e.response){
+                        console.log(e.resp.data);
+                    }  
                 });
         },
 

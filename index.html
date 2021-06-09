@@ -7,39 +7,67 @@
 
     <link rel="stylesheet" href="./asssets/css/style.css">
 
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap" rel="stylesheet">
+
     <title>Boolflix</title>
 </head>
 <body>
     <div id="app">
         <nav>
-            <input type="text" placeholder="Search film name" v-model="query">
-            <button @click="searchFilm()">Search</button>
+            <h1>boolflix</h1>
 
-            <select name="category" id="category" v-model="category" @click="clearList()">
-                <option value="" selected disabled >Choose Category</option>
-                <option value="movies">Movies</option>
-                <option value="tvShows">Tv Shows</option>
-            </select>
+            <div class="search_input">
+                <input type="text" placeholder="Search film name" v-model="query">
+
+                <select name="category" id="category" v-model="category" @click="clearList()">
+                    <option value="" selected disabled >Choose Category</option>
+                    <option value="movies">Movies</option>
+                    <option value="tvShows">Tv Shows</option>
+                </select>
+
+                <button @click="searchFilm()">Search</button>
+            </div>
         </nav>
 
         <div class="container">
+            <div :class="filmsList == null ?  '' : 'd_none' ">
+                <h2>Cosa vuoi vedere oggi?</h2>
+            </div>
             <div class="card" v-for="(film, index) in filmsList" v-if="category === 'movies'">
+
                 <img :src="'https://image.tmdb.org/t/p' + '/w342' + film.poster_path" alt="">
+
                 <div class="card_back">
-                    {{ film.title }}
-                    {{ film.original_title }}
+                    <h3>Titolo: {{ film.title }}</h3>
+
+                    <h3>Titolo Originale: {{ film.original_title }}</h3>
+
+                    <h3>Voto: {{ film.vote_average }}</h3>
+
+                    <h3>Trama: {{ film.overview }}</h3>
+
                     <img :src="'https://www.countryflags.io/' + film.original_language + '/shiny/64.png'" v-if="film.original_language == 'en' ? film.original_language = 'us' : film.original_language">
-                    {{ film.vote_average }}
+
                 </div>
 
             </div>
 
             <div class="card" v-else>
                 <img :src="'https://image.tmdb.org/t/p' + '/w342' + film.poster_path" alt="">
-                {{ film.original_name }}
-                {{ film.original_name }}
-                <img :src="'https://www.countryflags.io/' + film.original_language + '/shiny/64.png'" v-if="film.original_language == 'en' ? film.original_language = 'us' : film.original_language">
-                {{ film.vote_average }}
+
+                <div class="card_back">
+                    <h3>Titolo: {{ film.original_name }}</h3>
+
+                    <h3>Titolo Originale: {{ film.original_name }}</h3>
+
+                    <h3>Voto: {{ film.vote_average }}</h3>
+
+                    <h3>Trama: {{ film.overview }}</h3>
+
+                    <img :src="'https://www.countryflags.io/' + film.original_language + '/shiny/64.png'" v-if="film.original_language == 'en' ? film.original_language = 'us' : film.original_language">
+
             </div>
         </div>
     </div>
