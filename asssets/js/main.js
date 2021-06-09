@@ -9,9 +9,8 @@ const app = new Vue({
         language: 'it-IT',
         page: 1,
         filmsList:null,
-        countryFlag: `https://www.countryflags.io/`,
-        flagTipe:'/shiny/64.png', 
         category:'',
+        
     },
 
     methods: {
@@ -45,7 +44,7 @@ const app = new Vue({
         },
 
         clearList(){
-            this.filmsList = [];
+            this.filmsList = null;
         }
     },
 

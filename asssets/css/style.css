@@ -3,3 +3,27 @@
     margin: 0;
     padding: 0;
 }
+
+body {
+    background-color: gray;
+}
+
+nav {
+    background-color: black;
+    height: 5rem;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    margin: 1rem;
+    background-color: lightgray;
+    border: 2px solid white;
+}
+
+.card_back {
+    display: none;
+}
