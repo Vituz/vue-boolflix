@@ -10,6 +10,7 @@ const app = new Vue({
         page: 1,
         filmsList:null,
         category:'',
+        castList: [],
     },
 
     methods: {
@@ -36,6 +37,16 @@ const app = new Vue({
                     console.log(resp.data);
                     this.filmsList = resp.data.results;
                     console.log(this.filmsList);
+
+                    
+                    for(let i = 0; i < resp.data.results.length; i++){
+                        axios.get(`https://api.themoviedb.org/3/movie/${resp.data.results[i].id}/credits?api_key=03b14c3f1711a74b228ce8ae961435d6&language=it-IT`)
+                        .then(response => {
+                            console.log(response.data.cast);
+                            this.castList.push(response.data.cast);
+                        })
+                       
+                    }
                      
             }).catch(e => {
                 console.error(e);
